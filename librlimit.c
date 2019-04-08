@@ -35,11 +35,22 @@ typedef struct {
   char *name;
 } lrl_resource_t;
 
-const lrl_resource_t limits[] = {LRL_RESOURCE(RLIMIT_CORE),
+const lrl_resource_t limits[] = {LRL_RESOURCE(RLIMIT_AS),
+                                 LRL_RESOURCE(RLIMIT_CORE),
                                  LRL_RESOURCE(RLIMIT_CPU),
+                                 LRL_RESOURCE(RLIMIT_DATA),
                                  LRL_RESOURCE(RLIMIT_FSIZE),
+                                 LRL_RESOURCE(RLIMIT_LOCKS),
+                                 LRL_RESOURCE(RLIMIT_MEMLOCK),
+                                 LRL_RESOURCE(RLIMIT_MSGQUEUE),
+                                 LRL_RESOURCE(RLIMIT_NICE),
                                  LRL_RESOURCE(RLIMIT_NOFILE),
                                  LRL_RESOURCE(RLIMIT_NPROC),
+                                 LRL_RESOURCE(RLIMIT_RSS),
+                                 LRL_RESOURCE(RLIMIT_RTPRIO),
+                                 LRL_RESOURCE(RLIMIT_RTTIME),
+                                 LRL_RESOURCE(RLIMIT_SIGPENDING),
+                                 LRL_RESOURCE(RLIMIT_STACK),
 
                                  {0, NULL}};
 
