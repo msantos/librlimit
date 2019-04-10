@@ -35,24 +35,57 @@ typedef struct {
   char *name;
 } lrl_resource_t;
 
-const lrl_resource_t limits[] = {LRL_RESOURCE(RLIMIT_AS),
-                                 LRL_RESOURCE(RLIMIT_CORE),
-                                 LRL_RESOURCE(RLIMIT_CPU),
-                                 LRL_RESOURCE(RLIMIT_DATA),
-                                 LRL_RESOURCE(RLIMIT_FSIZE),
-                                 LRL_RESOURCE(RLIMIT_LOCKS),
-                                 LRL_RESOURCE(RLIMIT_MEMLOCK),
-                                 LRL_RESOURCE(RLIMIT_MSGQUEUE),
-                                 LRL_RESOURCE(RLIMIT_NICE),
-                                 LRL_RESOURCE(RLIMIT_NOFILE),
-                                 LRL_RESOURCE(RLIMIT_NPROC),
-                                 LRL_RESOURCE(RLIMIT_RSS),
-                                 LRL_RESOURCE(RLIMIT_RTPRIO),
-                                 LRL_RESOURCE(RLIMIT_RTTIME),
-                                 LRL_RESOURCE(RLIMIT_SIGPENDING),
-                                 LRL_RESOURCE(RLIMIT_STACK),
+const lrl_resource_t limits[] = {
+#ifdef RLIMIT_AS
+    LRL_RESOURCE(RLIMIT_AS),
+#endif
+#ifdef RLIMIT_CORE
+    LRL_RESOURCE(RLIMIT_CORE),
+#endif
+#ifdef RLIMIT_CPU
+    LRL_RESOURCE(RLIMIT_CPU),
+#endif
+#ifdef RLIMIT_DATA
+    LRL_RESOURCE(RLIMIT_DATA),
+#endif
+#ifdef RLIMIT_FSIZE
+    LRL_RESOURCE(RLIMIT_FSIZE),
+#endif
+#ifdef RLIMIT_LOCKS
+    LRL_RESOURCE(RLIMIT_LOCKS),
+#endif
+#ifdef RLIMIT_MEMLOCK
+    LRL_RESOURCE(RLIMIT_MEMLOCK),
+#endif
+#ifdef RLIMIT_MSGQUEUE
+    LRL_RESOURCE(RLIMIT_MSGQUEUE),
+#endif
+#ifdef RLIMIT_NICE
+    LRL_RESOURCE(RLIMIT_NICE),
+#endif
+#ifdef RLIMIT_NOFILE
+    LRL_RESOURCE(RLIMIT_NOFILE),
+#endif
+#ifdef RLIMIT_NPROC
+    LRL_RESOURCE(RLIMIT_NPROC),
+#endif
+#ifdef RLIMIT_RSS
+    LRL_RESOURCE(RLIMIT_RSS),
+#endif
+#ifdef RLIMIT_RTPRIO
+    LRL_RESOURCE(RLIMIT_RTPRIO),
+#endif
+#ifdef RLIMIT_RTTIME
+    LRL_RESOURCE(RLIMIT_RTTIME),
+#endif
+#ifdef RLIMIT_SIGPENDING
+    LRL_RESOURCE(RLIMIT_SIGPENDING),
+#endif
+#ifdef RLIMIT_STACK
+    LRL_RESOURCE(RLIMIT_STACK),
+#endif
 
-                                 {0, NULL}};
+    {0, NULL}};
 
 void _init(void);
 
