@@ -28,7 +28,7 @@
 #include <err.h>
 
 #define LRL_RESOURCE(x)                                                        \
-  { x, "LIB" #x }
+  { x, #x }
 
 typedef struct {
   int resource;
