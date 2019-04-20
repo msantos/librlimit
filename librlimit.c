@@ -109,21 +109,14 @@ void _init(void) {
 int lrl_setrlimit(int resource, char *rlim) {
   struct rlimit rl = {0};
   rlim_t cur = 0;
-  char *endptr = NULL;
 
   if (rlim == NULL)
     return 0;
 
   errno = 0;
-  cur = (rlim_t)strtoul(rlim, &endptr, 10);
-
+  cur = (rlim_t)strtoul(rlim, NULL, 10);
   if (errno != 0)
     return -1;
-
-  if (endptr != NULL) {
-    errno = EINVAL;
-    return -1;
-  }
 
   rl.rlim_cur = cur;
   rl.rlim_max = cur;
