@@ -87,22 +87,29 @@ const lrl_resource_t limits[] = {
 
     {0, NULL}};
 
+enum { LRL_OPT_EXIT = 1, LRL_OPT_DEBUG = 2 };
+
 void _init(void);
 
 int lrl_setrlimit(int resource, char *rlim);
-void lrl_error(char *err, char *msg);
+void lrl_error(int opt, char *msg);
 
 void _init(void) {
   char *name;
-  char *env_error;
+  char *env_opt;
+  int opt = 1;
   const lrl_resource_t *p;
 
-  env_error = getenv("LIBRLIMIT_ERROR");
+  env_opt = getenv("LIBRLIMIT_OPT");
+
+  if (env_opt != NULL) {
+    opt = atoi(env_opt);
+  }
 
   for (p = limits; p->name != NULL; p++) {
     name = getenv(p->name);
     if (lrl_setrlimit(p->resource, name) < 0)
-      lrl_error(env_error, p->name);
+      lrl_error(opt, p->name);
   }
 }
 
@@ -124,8 +131,10 @@ int lrl_setrlimit(int resource, char *rlim) {
   return setrlimit(resource, &rl);
 }
 
-void lrl_error(char *err, char *msg) {
-  if (!err)
+void lrl_error(int opt, char *msg) {
+  if (opt & LRL_OPT_DEBUG)
+    warn("librlimit: %s", msg);
+
+  if (opt & LRL_OPT_EXIT)
     _exit(111);
-  warn("librlimit: %s", msg);
 }
