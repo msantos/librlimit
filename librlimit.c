@@ -1,4 +1,4 @@
-/* Copyright (c) 2019, Michael Santos <michael.santos@gmail.com>
+/* Copyright (c) 2019-2020, Michael Santos <michael.santos@gmail.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -92,9 +92,9 @@ int lrl_setrlimit(int resource, char *rlim);
 void lrl_error(int opt, char *msg);
 
 void _init(void) {
-  char *name;
+  char *rlim;
   char *env_opt;
-  int opt = 1;
+  int opt = LRL_OPT_EXIT;
   const lrl_resource_t *p;
 
   env_opt = getenv("LIBRLIMIT_OPT");
@@ -104,8 +104,8 @@ void _init(void) {
   }
 
   for (p = limits; p->name != NULL; p++) {
-    name = getenv(p->name);
-    if (lrl_setrlimit(p->resource, name) < 0)
+    rlim = getenv(p->name);
+    if (lrl_setrlimit(p->resource, rlim) < 0)
       lrl_error(opt, p->name);
   }
 }
