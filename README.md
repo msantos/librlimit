@@ -3,13 +3,55 @@ librlimit
 
 librlimit: rlimit sandbox for any process
 
+# DESCRIPTION
+
+librlimit sets up rlimit process restrictions for dynamically linked
+executables. The restrictions are enforced after the executable has
+loaded any shared libraries.
+
+The shell `ulimit` or daemontools `softlimit` apply to the process
+lifetime from fork() to exec(). The process typically needs to perform
+operations such as reading libraries that require requesting file
+descriptors:
+
+* fork a subprocess
+* load shared libraries
+* nsswitch: read configuration files
+
+For example:
+
+* ulimit
+
+```
+$ (ulimit -n 0; ls)
+ls: error while loading shared libraries: libselinux.so.1: cannot open shared object file: Error 24
+```
+
+* softlimit
+
+```
+$ softlimit -o 0 ls
+ls: error while loading shared libraries: libselinux.so.1: cannot open shared object file: Error 24
+```
+
+* librlimit
+
+```
+LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 ls
+ls: cannot open directory '.': Too many open files
+```
+
 # EXAMPLES
 
     $ LD_PRELOAD=librlimit.so RLIMIT_FSIZE=0 yes > test
     File size limit exceeded (core dumped)
 
-    $ LD_PRELOAD=./librlimit.so RLIMIT_NPROC=0 sh -c "sleep 60 & sleep 60 & sleep 60 & sleep 60"
+    $ LD_PRELOAD=librlimit.so RLIMIT_NPROC=0 sh -c "sleep 60 & sleep 60 & sleep 60 & sleep 60"
     sh: 0: Cannot fork
+
+    $ LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 cat
+    abc
+         1  abc
 
 # ENVIRONMENT VARIABLES
 
