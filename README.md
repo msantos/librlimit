@@ -56,7 +56,7 @@ ls: cannot open directory '.': Too many open files
 # ENVIRONMENT VARIABLES
 
 LIBRLIMIT_OPT
-: set options for the library behaviour (default: 2)
+: set options for the library behaviour (default: 1)
 
       0: no options enabled
       1: exit with status 111 if setting rlimit fails
