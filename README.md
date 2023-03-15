@@ -1,5 +1,4 @@
-librlimit
-=========
+# librlimit
 
 librlimit: rlimit sandbox for any process
 
@@ -43,25 +42,29 @@ ls: cannot open directory '.': Too many open files
 
 # EXAMPLES
 
-    $ LD_PRELOAD=librlimit.so RLIMIT_FSIZE=0 yes > test
-    File size limit exceeded (core dumped)
+```
+$ LD_PRELOAD=librlimit.so RLIMIT_FSIZE=0 yes > test
+File size limit exceeded (core dumped)
 
-    $ LD_PRELOAD=librlimit.so RLIMIT_NPROC=0 sh -c "sleep 60 & sleep 60 & sleep 60 & sleep 60"
-    sh: 0: Cannot fork
+$ LD_PRELOAD=librlimit.so RLIMIT_NPROC=0 sh -c "sleep 60 & sleep 60 & sleep 60 & sleep 60"
+sh: 0: Cannot fork
 
-    $ LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 cat
-    abc
-         1  abc
+$ LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 cat
+abc
+     1  abc
+```
 
 # ENVIRONMENT VARIABLES
 
 LIBRLIMIT_OPT
 : set options for the library behaviour (default: 1)
 
-      0: no options enabled
-      1: exit with status 111 if setting rlimit fails
-      2: enable debug
-      3: exit on failure and debug enabled
+```
+  0: no options enabled
+  1: exit with status 111 if setting rlimit fails
+  2: enable debug
+  3: exit on failure and debug enabled
+```
 
 Supported resources are platform dependent. See `setrlimit(3)`.
 
