@@ -115,3 +115,21 @@ RLIMIT_SIGPENDING
 
 RLIMIT_STACK
 : maximum size of process stack
+
+RLIMIT_SBSIZE
+: maximum size of all socket buffers (FreeBSD)
+
+RLIMIT_VMEM
+: virtual process size (incl. mmap) (equivalent to RLIMIT_AS) (FreeBSD)
+
+RLIMIT_NPTS
+: pseudo-terminals (FreeBSD)
+
+RLIMIT_SWAP
+: swap used (FreeBSD)
+
+RLIMIT_KQUEUES
+: kqueues allocated (FreeBSD)
+
+RLIMIT_UMTXP
+: process-shared umtx (FreeBSD)

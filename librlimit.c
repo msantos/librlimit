@@ -82,6 +82,27 @@ static const lrl_resource_t limits[] = {
     LRL_RESOURCE(RLIMIT_STACK),
 #endif
 
+/* FreeBSD */
+#ifdef RLIMIT_SBSIZE
+    LRL_RESOURCE(RLIMIT_SBSIZE), /* maximum size of all socket buffers */
+#endif
+#ifdef RLIMIT_VMEM
+    LRL_RESOURCE(RLIMIT_VMEM), /* virtual process size (incl. mmap), equivalent
+                                  to RLIMIT_AS */
+#endif
+#ifdef RLIMIT_NPTS
+    LRL_RESOURCE(RLIMIT_NPTS), /* pseudo-terminals */
+#endif
+#ifdef RLIMIT_SWAP
+    LRL_RESOURCE(RLIMIT_SWAP), /* swap used */
+#endif
+#ifdef RLIMIT_KQUEUES
+    LRL_RESOURCE(RLIMIT_KQUEUES), /* kqueues allocated */
+#endif
+#ifdef RLIMIT_UMTXP
+    LRL_RESOURCE(RLIMIT_UMTXP), /* process-shared umtx */
+#endif
+
     {0, NULL}};
 
 enum { LRL_OPT_EXIT = 1, LRL_OPT_DEBUG = 2 };
