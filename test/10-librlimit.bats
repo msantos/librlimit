@@ -20,7 +20,14 @@ EOF
   TMPFILE="$(mktemp)"
   run sh -c "LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 RLIMIT_FSIZE=0 sed 's/t/_/g' </etc/hosts >$TMPFILE"
 
+  case "$(uname -s)" in
+  Linux)
   expected="File size limit exceeded (core dumped)"
+  ;;
+  *)
+  expected=""
+  ;;
+  esac
 
   cat <<EOF
 --- output
