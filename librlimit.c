@@ -109,8 +109,8 @@ enum { LRL_OPT_EXIT = 1, LRL_OPT_DEBUG = 2 };
 
 void _init(void);
 
-int lrl_setrlimit(int resource, char *rlim);
-void lrl_error(int opt, char *msg);
+static int lrl_setrlimit(int resource, char *rlim);
+static void lrl_error(int opt, char *msg);
 
 void _init(void) {
   char *rlim;
@@ -131,7 +131,7 @@ void _init(void) {
   }
 }
 
-int lrl_setrlimit(int resource, char *rlim) {
+static int lrl_setrlimit(int resource, char *rlim) {
   struct rlimit rl = {0};
   char *endptr;
   rlim_t cur = 0;
@@ -156,7 +156,7 @@ int lrl_setrlimit(int resource, char *rlim) {
   return setrlimit(resource, &rl);
 }
 
-void lrl_error(int opt, char *msg) {
+static void lrl_error(int opt, char *msg) {
   if (opt & LRL_OPT_DEBUG)
     warn("librlimit: %s", msg);
 
