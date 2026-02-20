@@ -1,4 +1,4 @@
-/* Copyright (c) 2019-2023, Michael Santos <michael.santos@gmail.com>
+/* Copyright (c) 2019-2026, Michael Santos <michael.santos@gmail.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -103,7 +103,8 @@ static const lrl_resource_t limits[] = {
     LRL_RESOURCE(RLIMIT_UMTXP), /* process-shared umtx */
 #endif
 
-    {0, NULL}};
+    {0, NULL},
+};
 
 enum { LRL_OPT_EXIT = 1, LRL_OPT_DEBUG = 2 };
 
