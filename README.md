@@ -9,9 +9,8 @@ executables. The restrictions are enforced after the executable has
 loaded any shared libraries.
 
 The shell `ulimit` or daemontools `softlimit` apply to the process
-lifetime from fork() to exec(). The process typically needs to perform
-operations such as reading libraries that require requesting file
-descriptors:
+lifetime from fork() to exec(). The process will typically need to
+perform operations like opening a file descriptor to linked libraries:
 
 * fork a subprocess
 * load shared libraries
@@ -49,7 +48,7 @@ File size limit exceeded (core dumped)
 $ LD_PRELOAD=librlimit.so RLIMIT_NPROC=0 sh -c "sleep 60 & sleep 60 & sleep 60 & sleep 60"
 sh: 0: Cannot fork
 
-$ LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 cat
+$ LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 cat -n
 abc
      1  abc
 ```
