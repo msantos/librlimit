@@ -20,28 +20,28 @@ For example:
 
 * ulimit
 
-```
+```bash
 $ (ulimit -n 0; ls)
 ls: error while loading shared libraries: libselinux.so.1: cannot open shared object file: Error 24
 ```
 
 * softlimit
 
-```
+```bash
 $ softlimit -o 0 ls
 ls: error while loading shared libraries: libselinux.so.1: cannot open shared object file: Error 24
 ```
 
 * librlimit
 
-```
+```bash
 LD_PRELOAD=librlimit.so RLIMIT_NOFILE=0 ls
 ls: cannot open directory '.': Too many open files
 ```
 
 # EXAMPLES
 
-```
+```bash
 $ LD_PRELOAD=librlimit.so RLIMIT_FSIZE=0 yes > test
 File size limit exceeded (core dumped)
 
@@ -57,13 +57,10 @@ abc
 
 LIBRLIMIT_OPT
 : set options for the library behaviour (default: 1)
-
-```
-  0: no options enabled
-  1: exit with status 111 if setting rlimit fails
-  2: enable debug
-  3: exit on failure and debug enabled
-```
+* 0: no options enabled
+* 1: exit with status 111 if setting rlimit fails
+* 2: enable debug
+* 3: exit on failure and debug enabled
 
 Supported resources are platform dependent. See `setrlimit(3)`.
 
